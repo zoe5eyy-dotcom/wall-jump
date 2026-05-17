@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>동질화 지수 · 학교 현황</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button type="button" class="logo-btn" id="btn-home" aria-label="홈으로">
+        <span class="logo-mark">동</span>
+        <span class="logo-text">학교 동질화 지수</span>
+      </button>
+      <nav class="breadcrumb" id="breadcrumb" aria-label="경로"></nav>
+    </div>
+  </header>
+
+  <main class="main" id="app">
+    <section class="view view--active" id="view-home" data-view="home">
+      <div class="hero">
+        <h1>메뉴를 선택하세요</h1>
+        <p class="hero-desc">학교별 동질화 지수와 서비스 현황을 확인할 수 있습니다.</p>
+      </div>
+      <div class="category-grid">
+        <button type="button" class="category-card category-card--primary" data-nav="calc-step1">
+          <span class="category-icon" aria-hidden="true">📊</span>
+          <span class="category-title">동질화 지수 계산</span>
+          <span class="category-desc">지역·학교를 선택하고 지수를 확인합니다</span>
+        </button>
+        <button type="button" class="category-card" data-nav="service">
+          <span class="category-icon" aria-hidden="true">🔗</span>
+          <span class="category-title">서비스 이용</span>
+          <span class="category-desc">관련 서비스 안내 (준비 중)</span>
+        </button>
+        <button type="button" class="category-card" data-nav="etc">
+          <span class="category-icon" aria-hidden="true">⋯</span>
+          <span class="category-title">기타</span>
+          <span class="category-desc">추가 기능 (준비 중)</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="view" id="view-calc-step1" data-view="calc-step1">
+      <div class="page-head">
+        <h1>동질화 지수 계산</h1>
+        <p class="step-label">Step 1 · 지역 및 학교 선택</p>
+      </div>
+
+      <div class="panel" id="load-panel">
+        <p class="loading-text" id="load-status">학교 데이터를 불러오는 중…</p>
+      </div>
+
+      <form class="select-form" id="school-form" hidden>
+        <div class="field">
+          <label for="region-select">시도교육청</label>
+          <select id="region-select" required>
+            <option value="">시도교육청을 선택하세요</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="school-select">학교명</label>
+          <select id="school-select" required disabled>
+            <option value="">먼저 시도교육청을 선택하세요</option>
+          </select>
+        </div>
+
+        <div class="field field--search">
+          <label for="school-search">학교 검색</label>
+          <input type="search" id="school-search" placeholder="학교명으로 검색" autocomplete="off" disabled />
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn--ghost" data-nav="home">취소</button>
+          <button type="submit" class="btn btn--primary" id="btn-next" disabled>다음</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="view" id="view-calc-step2" data-view="calc-step2">
+      <div class="page-head">
+        <h1 id="dashboard-title">학교 현황</h1>
+        <p class="step-label">Step 2 · 선택 학교 정보</p>
+      </div>
+
+      <div class="school-summary" id="school-summary"></div>
+
+      <div class="metric-grid">
+        <article class="metric-card">
+          <h2>동질화 지수</h2>
+          <p class="metric-value metric-value--placeholder" id="metric-homogenization">—</p>
+          <p class="metric-note">계산 로직 추가 예정</p>
+        </article>
+        <article class="metric-card">
+          <h2>서비스 이용</h2>
+          <p class="metric-value metric-value--placeholder" id="metric-service">—</p>
+          <p class="metric-note">계산 로직 추가 예정</p>
+        </article>
+        <article class="metric-card">
+          <h2>현황</h2>
+          <p class="metric-value metric-value--placeholder" id="metric-status">—</p>
+          <p class="metric-note">계산 로직 추가 예정</p>
+        </article>
+      </div>
+
+      <div class="detail-panel">
+        <h3>학교 기본 정보</h3>
+        <dl class="info-list" id="school-info-list"></dl>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn--ghost" data-nav="calc-step1">학교 다시 선택</button>
+        <button type="button" class="btn btn--primary" data-nav="home">홈으로</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-service" data-view="service">
+      <div class="page-head">
+        <h1>서비스 이용</h1>
+        <p class="hero-desc">이 메뉴는 추후 제공될 예정입니다.</p>
+      </div>
+      <button type="button" class="btn btn--ghost" data-nav="home">홈으로</button>
+    </section>
+
+    <section class="view" id="view-etc" data-view="etc">
+      <div class="page-head">
+        <h1>기타</h1>
+        <p class="hero-desc">이 메뉴는 추후 제공될 예정입니다.</p>
+      </div>
+      <button type="button" class="btn btn--ghost" data-nav="home">홈으로</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>데이터: Google 스프레드시트 (한국교육시설안전원 학교·학구도 연계정보)</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
